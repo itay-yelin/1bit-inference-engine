@@ -1,8 +1,10 @@
 #include "DiagnosticAgent.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <thread>
 #include <vector>
+
 
 // STRICT FORMATTING: All braces on new lines
 
@@ -10,6 +12,24 @@ struct SimulationScenario {
   std::string inputJson;
   std::string description;
 };
+
+// Helper to escape JSON strings to prevent UI parsing errors
+std::string escapeJsonString(const std::string &input) {
+  std::string output;
+  output.reserve(input.length());
+  for (char c : input) {
+    if (c == '"') {
+      output += "\\\"";
+    } else if (c == '\\') {
+      output += "\\\\";
+    } else if (c == '\n') {
+      output += "\\n";
+    } else {
+      output += c;
+    }
+  }
+  return output;
+}
 
 std::vector<SimulationScenario> generateScenarios() {
   std::vector<SimulationScenario> scenarios;
@@ -64,9 +84,12 @@ void runPrediction(DiagnosticAgent &agent, const std::string &inputJson) {
   double ttft = agent.getLastTTFT();
   double tps = agent.getLastTPS();
 
+  // Escape the summary to ensure valid JSON output
+  std::string escapedSummary = escapeJsonString(summary);
+
   // Output JSON for UI parsing
   std::cout << "{"
-            << "\"summary\": \"" << summary << "\", "
+            << "\"summary\": \"" << escapedSummary << "\", "
             << "\"ttft_ms\": " << ttft << ", "
             << "\"tps\": " << tps << "}" << std::endl;
 }

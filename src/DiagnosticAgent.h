@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 
-
 // Forward declaration
 struct llama_model;
 

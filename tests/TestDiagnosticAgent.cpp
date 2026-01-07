@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-
 // STRICT FORMATTING: All braces on new lines
 
 void assertContains(const std::string &actual, const std::string &expected,

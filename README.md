@@ -15,6 +15,7 @@ cd ..
 ```
 
 ### Build C++ Backend
+
 ```bash
 mkdir build
 cd build
@@ -25,18 +26,37 @@ cmake --build . --config Release
 ## 2. Usage
 
 ### Command Line Interface
+
 Run the demo loop (Process 5 scenarios):
+
 ```bash
-./Release/SemanticReasoner.exe --demo
+# Windows
+.\Release\SemanticReasoner.exe --demo
+
+# Linux/Mac
+./SemanticReasoner --demo
 ```
 
 Run a single prediction (process specific JSON):
+
 ```bash
-./Release/SemanticReasoner.exe --predict "{\"detected_object\": \"tire\", \"defect\": \"puncture\", \"confidence\": 0.99}"
+# Windows
+.\Release\SemanticReasoner.exe --predict "{\"detected_object\": \"tire\", \"defect\": \"puncture\", \"confidence\": 0.99}"
 ```
 
-### Streamlit UI
+### Running Unit Tests (New)
+
+Validate the agent's logic and metric recording before deployment.
+
+```bash
+# Run the test executable directly
+.\Release\TestSemanticReasoner.exe
+```
+
+## 3. Streamlit UI
+
 Run the interactive dashboard:
+
 ```bash
 pip install streamlit
 streamlit run ui/app.py
