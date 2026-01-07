@@ -1,0 +1,33 @@
+# CMake build artifacts
+build/
+bin/
+lib/
+*.exe
+*.dll
+*.so
+*.dylib
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# External dependencies (if user clones them manually)
+external/bitnet/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
